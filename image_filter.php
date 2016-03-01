@@ -1,3 +1,27 @@
+<!-- Load widget code -->
+<script type="text/javascript" src="http://feather.aviary.com/imaging/v3/editor.js"></script>
+
+<!-- Instantiate the widget -->
+<script type="text/javascript">
+
+    var featherEditor = new Aviary.Feather({
+        apiKey: 'cc2dcd23-ccdb-4efb-88a8-1d99330293f5',
+        onSave: function(imageID, newURL) {
+            var img = document.getElementById(imageID);
+            img.src = newURL;
+        }
+    });
+
+    function launchEditor(id, src) {
+        featherEditor.launch({
+            image: id,
+            url: src
+        });
+        return false;
+    }
+
+</script>
+
 <?php
 $target_file = $_POST['target_file'];
 $imageFileType = $_POST['image_file_type'];
@@ -18,7 +42,9 @@ if ($imageFileType == "jpg" || $imageFileType == "jpeg") {
             imagejpeg($image, $grayscale_dir);
             imagedestroy($image);
             filteredNewImage($grayscale_dir);
-            echo '<br><center><button onclick="history.go(-1);">Try Another Filter</button></center>';
+            echo '<br><center><button onclick="history.go(-1);">Try Another Filter</button> OR <button 
+            onclick="return launchEditor(\'image\', \''.$grayscale_dir.'\');">Edit Image!</button></center>';
+            note();
             break;
 
         case 'edgedetect' :
@@ -27,7 +53,9 @@ if ($imageFileType == "jpg" || $imageFileType == "jpeg") {
             imagejpeg($image, $edgedetect_dir);
             imagedestroy($image);
             filteredNewImage($edgedetect_dir);
-            echo '<br><center><button onclick="history.go(-1);">Try Another Filter</button></center>';
+            echo '<br><center><button onclick="history.go(-1);">Try Another Filter</button> OR <button 
+            onclick="return launchEditor(\'image\', \''.$edgedetect_dir.'\');">Edit Image!</button></center>';
+            note();
             break;
 
         case 'emboss' :
@@ -36,7 +64,9 @@ if ($imageFileType == "jpg" || $imageFileType == "jpeg") {
             imagejpeg($image, $emboss_dir);
             imagedestroy($image);
             filteredNewImage($emboss_dir);
-            echo '<br><center><button onclick="history.go(-1);">Try Another Filter</button></center>';
+            echo '<br><center><button onclick="history.go(-1);">Try Another Filter</button> OR <button 
+            onclick="return launchEditor(\'image\', \''.$emboss_dir.'\');">Edit Image!</button></center>';
+            note();
             break;
 
         case 'mean_removal' :
@@ -45,7 +75,9 @@ if ($imageFileType == "jpg" || $imageFileType == "jpeg") {
             imagejpeg($image, $mean_removal_dir);
             imagedestroy($image);
             filteredNewImage($mean_removal_dir);
-            echo '<br><center><button onclick="history.go(-1);">Try Another Filter</button></center>';
+            echo '<br><center><button onclick="history.go(-1);">Try Another Filter</button> OR <button 
+            onclick="return launchEditor(\'image\', \''.$mean_removal_dir.'\');">Edit Image!</button></center>';
+            note();
             break;
 
         case 'negate' :
@@ -54,7 +86,9 @@ if ($imageFileType == "jpg" || $imageFileType == "jpeg") {
             imagejpeg($image, $negate_dir);
             imagedestroy($image);
             filteredNewImage($negate_dir);
-            echo '<br><center><button onclick="history.go(-1);">Try Another Filter</button></center>';
+            echo '<br><center><button onclick="history.go(-1);">Try Another Filter</button> OR <button 
+            onclick="return launchEditor(\'image\', \''.$negate_dir.'\');">Edit Image!</button></center>';
+            note();
             break;
 
         case 'sepia' :
@@ -64,12 +98,15 @@ if ($imageFileType == "jpg" || $imageFileType == "jpeg") {
             imagejpeg($image, $sepia_dir);
             imagedestroy($image);
             filteredNewImage($sepia_dir);
-            echo '<br><center><button onclick="history.go(-1);">Try Another Filter</button></center>';
+            echo '<br><center><button onclick="history.go(-1);">Try Another Filter</button> OR <button 
+            onclick="return launchEditor(\'image\', \''.$sepia_dir.'\');">Edit Image!</button></center>';
+            note();
             break;
 
         default :
             filteredNewImage($target_file);
-            echo '<br><center><button onclick="history.go(-1);">Try Another Filter</button></center>';
+            echo '<br><center><button onclick="history.go(-1);">Try Another Filter</button> OR <button 
+            onclick="return launchEditor(\'image\', \''.$target_file.'\');">Customize Image!</button></center>';
             break;
     }
 } else if ($imageFileType == "png") {
@@ -80,7 +117,9 @@ if ($imageFileType == "jpg" || $imageFileType == "jpeg") {
             imagepng($image, $grayscale_dir);
             imagedestroy($image);
             filteredNewImage($grayscale_dir);
-            echo '<br><center><button onclick="history.go(-1);">Try Another Filter</button></center>';
+            echo '<br><center><button onclick="history.go(-1);">Try Another Filter</button> OR <button 
+            onclick="return launchEditor(\'image\', \''.$grayscale_dir.'\');">Edit Image!</button></center>';
+            note();
             break;
 
         case 'edgedetect' :
@@ -89,7 +128,9 @@ if ($imageFileType == "jpg" || $imageFileType == "jpeg") {
             imagepng($image, $edgedetect_dir);
             imagedestroy($image);
             filteredNewImage($edgedetect_dir);
-            echo '<br><center><button onclick="history.go(-1);">Try Another Filter</button></center>';
+            echo '<br><center><button onclick="history.go(-1);">Try Another Filter</button> OR <button 
+            onclick="return launchEditor(\'image\', \''.$edgedetect_dir.'\');">Edit Image!</button></center>';
+            note();
             break;
 
         case 'emboss' :
@@ -98,7 +139,9 @@ if ($imageFileType == "jpg" || $imageFileType == "jpeg") {
             imagepng($image, $emboss_dir);
             imagedestroy($image);
             filteredNewImage($emboss_dir);
-            echo '<br><center><button onclick="history.go(-1);">Try Another Filter</button></center>';
+            echo '<br><center><button onclick="history.go(-1);">Try Another Filter</button> OR <button 
+            onclick="return launchEditor(\'image\', \''.$emboss_dir.'\');">Edit Image!</button></center>';
+            note();
             break;
 
         case 'mean_removal' :
@@ -107,7 +150,9 @@ if ($imageFileType == "jpg" || $imageFileType == "jpeg") {
             imagepng($image, $mean_removal_dir);
             imagedestroy($image);
             filteredNewImage($mean_removal_dir);
-            echo '<br><center><button onclick="history.go(-1);">Try Another Filter</button></center>';
+            echo '<br><center><button onclick="history.go(-1);">Try Another Filter</button> OR <button 
+            onclick="return launchEditor(\'image\', \''.$mean_removal_dir.'\');">Edit Image!</button></center>';
+            note();
             break;
 
         case 'negate' :
@@ -116,7 +161,9 @@ if ($imageFileType == "jpg" || $imageFileType == "jpeg") {
             imagepng($image, $negate_dir);
             imagedestroy($image);
             filteredNewImage($negate_dir);
-            echo '<br><center><button onclick="history.go(-1);">Try Another Filter</button></center>';
+            echo '<br><center><button onclick="history.go(-1);">Try Another Filter</button> OR <button 
+            onclick="return launchEditor(\'image\', \''.$negate_dir.'\');">Edit Image!</button></center>';
+            note();
             break;
 
         case 'sepia' :
@@ -126,12 +173,15 @@ if ($imageFileType == "jpg" || $imageFileType == "jpeg") {
             imagepng($image, $sepia_dir);
             imagedestroy($image);
             filteredNewImage($sepia_dir);
-            echo '<br><center><button onclick="history.go(-1);">Try Another Filter</button></center>';
+            echo '<br><center><button onclick="history.go(-1);">Try Another Filter</button> OR <button 
+            onclick="return launchEditor(\'image\', \''.$sepia_dir.'\');">Edit Image!</button></center>';
+            note();
             break;
 
         default :
             filteredNewImage($target_file);
-            echo '<br><center><button onclick="history.go(-1);">Try Another Filter</button></center>';
+            echo '<br><center><button onclick="history.go(-1);">Try Another Filter</button> OR <button 
+            onclick="return launchEditor(\'image\', \''.$target_file.'\');">Customize Image!</button></center>';
             break;
     }
 } else if ($imageFileType == "gif") {
@@ -142,7 +192,9 @@ if ($imageFileType == "jpg" || $imageFileType == "jpeg") {
             imagegif($image, $grayscale_dir);
             imagedestroy($image);
             filteredNewImage($grayscale_dir);
-            echo '<br><center><button onclick="history.go(-1);">Try Another Filter</button></center>';
+            echo '<br><center><button onclick="history.go(-1);">Try Another Filter</button> OR <button 
+            onclick="return launchEditor(\'image\', \''.$grayscale_dir.'\');">Edit Image!</button></center>';
+            note();
             break;
 
         case 'edgedetect' :
@@ -151,7 +203,9 @@ if ($imageFileType == "jpg" || $imageFileType == "jpeg") {
             imagegif($image, $edgedetect_dir);
             imagedestroy($image);
             filteredNewImage($edgedetect_dir);
-            echo '<br><center><button onclick="history.go(-1);">Try Another Filter</button></center>';
+            echo '<br><center><button onclick="history.go(-1);">Try Another Filter</button> OR <button 
+            onclick="return launchEditor(\'image\', \''.$edgedetect_dir.'\');">Edit Image!</button></center>';
+            note();
             break;
 
         case 'emboss' :
@@ -160,7 +214,9 @@ if ($imageFileType == "jpg" || $imageFileType == "jpeg") {
             imagegif($image, $emboss_dir);
             imagedestroy($image);
             filteredNewImage($emboss_dir);
-            echo '<br><center><button onclick="history.go(-1);">Try Another Filter</button></center>';
+            echo '<br><center><button onclick="history.go(-1);">Try Another Filter</button> OR <button 
+            onclick="return launchEditor(\'image\', \''.$emboss_dir.'\');">Edit Image!</button></center>';
+            note();
             break;
 
         case 'mean_removal' :
@@ -169,7 +225,9 @@ if ($imageFileType == "jpg" || $imageFileType == "jpeg") {
             imagegif($image, $mean_removal_dir);
             imagedestroy($image);
             filteredNewImage($mean_removal_dir);
-            echo '<br><center><button onclick="history.go(-1);">Try Another Filter</button></center>';
+            echo '<br><center><button onclick="history.go(-1);">Try Another Filter</button> OR <button 
+            onclick="return launchEditor(\'image\', \''.$mean_removal_dir.'\');">Edit Image!</button></center>';
+            note();
             break;
 
         case 'negate' :
@@ -178,7 +236,9 @@ if ($imageFileType == "jpg" || $imageFileType == "jpeg") {
             imagegif($image, $negate_dir);
             imagedestroy($image);
             filteredNewImage($negate_dir);
-            echo '<br><center><button onclick="history.go(-1);">Try Another Filter</button></center>';
+            echo '<br><center><button onclick="history.go(-1);">Try Another Filter</button> OR <button 
+            onclick="return launchEditor(\'image\', \''.$negate_dir.'\');">Edit Image!</button></center>';
+            note();
             break;
 
         case 'sepia' :
@@ -188,12 +248,15 @@ if ($imageFileType == "jpg" || $imageFileType == "jpeg") {
             imagegif($image, $sepia_dir);
             imagedestroy($image);
             filteredNewImage($sepia_dir);
-            echo '<br><center><button onclick="history.go(-1);">Try Another Filter</button></center>';
+            echo '<br><center><button onclick="history.go(-1);">Try Another Filter</button> OR <button 
+            onclick="return launchEditor(\'image\', \''.$sepia_dir.'\');">Edit Image!</button></center>';
+            note();
             break;
 
         default :
             filteredNewImage($target_file);
-            echo '<br><center><button onclick="history.go(-1);">Try Another Filter</button></center>';
+            echo '<br><center><button onclick="history.go(-1);">Try Another Filter</button> OR <button 
+            onclick="return launchEditor(\'image\', \''.$target_file.'\');">Customize Image!</button></center>';
             break;
     }
 }
@@ -213,21 +276,30 @@ function checkImage($target_file, $width_original, $height_original) {
     } else if ($width_original > 1024 && $height_original <= 768) {
         $width = 1024;
         printImage($width, $height_original, $width_original, $height_original, $target_file);
-    } else {
+    } else if ($width_original <= 1024 && $height_original > 768) {
         $height = 768;
         printImage($width_original, $height, $width_original, $height_original, $target_file);
+    } else {
+        printImage($width_original, $height_original, $width_original, $height_original, $target_file);
     }
 }
 
 // Prints out the image
 function printImage($width, $height, $width_original, $height_original, $target_file) {
-    echo "<center><br> <font color=\"red\">Note: Click on 
-    images to show full size, double click to restore to original 
-    size!</font> <br><br><img src= \"$target_file\" alt=\"image\" 
-    width=\"$width\" height=\"$height\" style=\"cursor:pointer;cursor:hand\" 
+    echo "<center><br> <font color=\"red\">Note: Some images are too large, so they get 
+    truncated. Click on images to show full size, double click to restore to original 
+    size!</font> <br><br><img id=\"image\" src= \"$target_file\" 
+    alt=\"image\" width=\"$width\" height=\"$height\" style=\"cursor:pointer;cursor:hand\" 
     onclick=\"this.src='$target_file'; this.height='$height_original'; 
     this.width='$width_original'\" ondblclick=\"this.src='$target_file';
     this.height='$height';this.width='$width'\" /></center>";
+}
+
+function note() {
+    echo "<center><br><font color=\"red\">Note: The photo Editor (Aviary) API was 
+    implemented correctly, however, as can be seen when the <b>Edit Image!</b> button is 
+    pressed, their service seems to be down. Since I've implemented the API correctly, 
+    I've decided to leave this API functionality as is.</font></center>";
 }
 
 // Checks which button is pressed.

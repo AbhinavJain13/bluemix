@@ -48,7 +48,7 @@ if ($uploadOk == 0) {
     // if everything is ok, try to upload file
 } else {
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-        echo "The file " . basename($_FILES["fileToUpload"]["name"]) . " has been uploaded to S3.";
+        echo "The file '" . basename($_FILES["fileToUpload"]["name"]) . "' has been uploaded.";
     } else {
         echo "Sorry, there was an error uploading your file.";
     }
@@ -67,9 +67,11 @@ function checkImage() {
     } else if ($width_original > 1024 && $height_original <= 768) {
         $width = 1024;
         printImage($width, $height_original);
-    } else {
+    } else if ($width_original <= 1024 && $height_original > 768) {
         $height = 768;
         printImage($width_original, $height);
+    } else {
+        printImage($width_original, $height_original);
     }
 }
 
@@ -77,9 +79,9 @@ function checkImage() {
 function printImage($width, $height) {
     global $width_original, $height_original, $target_file;
 
-    echo "<center><font color=\"red\">Note: Click on 
-    images to show full size, double click to restore to original 
-    size!</font> <br><br><img src= \"$target_file\" alt=\"image\" 
+    echo "<center><font color=\"red\">Note: Some images are too large, so they get 
+    truncated. Click on images to show full size, double click to restore to 
+    original size!</font> <br><br><img src= \"$target_file\" alt=\"image\" 
     width=\"$width\" height=\"$height\" style=\"cursor:pointer;cursor:hand\" 
 	onclick=\"this.src='$target_file'; this.height='$height_original'; 
 	this.width='$width_original'\" ondblclick=\"this.src='$target_file';
@@ -89,48 +91,54 @@ function printImage($width, $height) {
 
 <br>
 <br>
-<center><form action="image_filter.php" method="POST">
+<center><div style="display: inline-block">
+<form action="image_filter.php" method="POST">
 <input type="submit" name "grayscale" value="Grayscale" />
 <input type="hidden" name="target_file" value="<?php echo $target_file ?>" />
 <input type="hidden" name="image_file_type" value="<?php echo $imageFileType ?>" />
 <input type="hidden" name="filename" value="<?php echo basename($_FILES["fileToUpload"]["name"]) ?>" />
 <input type="hidden" name="grayscale" value="gray" />
-</form>
+</form></div>
+<div style="display: inline-block">
 <form action="image_filter.php" method="POST">
 <input name "edgedetect" type="submit" id="submit" value="EdgeDetect" />
 <input type="hidden" name="target_file" value="<?php echo $target_file ?>" />
 <input type="hidden" name="image_file_type" value="<?php echo $imageFileType ?>" />
 <input type="hidden" name="filename" value="<?php echo basename($_FILES["fileToUpload"]["name"]) ?>" />
 <input type="hidden" name="edgedetect" value="edge" />
-</form>
+</form></div>
+<div style="display: inline-block">
 <form action="image_filter.php" method="POST">
 <input name "emboss" type="submit" id="submit" value="EMBOSS" />
 <input type="hidden" name="target_file" value="<?php echo $target_file ?>" />
 <input type="hidden" name="image_file_type" value="<?php echo $imageFileType ?>" />
 <input type="hidden" name="filename" value="<?php echo basename($_FILES["fileToUpload"]["name"]) ?>" />
 <input type="hidden" name="emboss" value="emboss" />
-</form>
+</form></div>
+<div style="display: inline-block">
 <form action="image_filter.php" method="POST">
 <input name "mean_removal" type="submit" id="submit" value="Mean Removal" />
 <input type="hidden" name="target_file" value="<?php echo $target_file ?>" />
 <input type="hidden" name="image_file_type" value="<?php echo $imageFileType ?>" />
 <input type="hidden" name="filename" value="<?php echo basename($_FILES["fileToUpload"]["name"]) ?>" />
 <input type="hidden" name="mean_removal" value="mean" />
-</form>
+</form></div>
+<div style="display: inline-block">
 <form action="image_filter.php" method="POST">
 <input name "negate" type="submit" id="submit" value="Negate" />
 <input type="hidden" name="target_file" value="<?php echo $target_file ?>" />
 <input type="hidden" name="image_file_type" value="<?php echo $imageFileType ?>" />
 <input type="hidden" name="filename" value="<?php echo basename($_FILES["fileToUpload"]["name"]) ?>" />
 <input type="hidden" name="negate" value="negate" />
-</form>
+</form></div>
+<div style="display: inline-block">
 <form action="image_filter.php" method="POST">
 <input name "sepia" type="submit" id="submit" value="Sepia" />
 <input type="hidden" name="target_file" value="<?php echo $target_file ?>" />
 <input type="hidden" name="image_file_type" value="<?php echo $imageFileType ?>" />
 <input type="hidden" name="filename" value="<?php echo basename($_FILES["fileToUpload"]["name"]) ?>" />
 <input type="hidden" name="sepia" value="sepia" />
-</form>
+</form></div>
 
 <br><form action="main.php" method="POST">
 <input type="submit" name="try_another_image" value="Try Another Image" />

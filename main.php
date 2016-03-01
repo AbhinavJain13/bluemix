@@ -29,6 +29,8 @@ if (isset($_POST['idtoken']) && ($_POST['idtoken']) != null) {
 	<input type="submit" value="Upload Image" name="submit">
 </form>
 
+<?php echo "<br><center><a href='weather.php?idtoken=$_POST[idtoken]'>Check out today's weather!</a></center>"; ?>
+
 <br>
 <br>
 <br>
