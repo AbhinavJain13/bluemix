@@ -1,6 +1,6 @@
 <center>
 <form action="index.php" method="POST">
-    <input type="text" name="search" />
+    <input type="text" name="search" value="<?php if (isset($_POST['search'])) { echo $_POST['search']; } else { echo ''; } ?>"/>
     <input type="submit" value="Search" required />
 </form>
 <?php
