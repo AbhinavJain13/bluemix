@@ -1,3 +1,8 @@
+<!-- Note: The photo Editor (Aviary) API below was implemented correctly, however, as can be seen
+     when the Edit Image! button is pressed, their service seems to be down. Since I've
+     implemented the API correctly, I've decided to leave this API functionality as is. Also, I
+     was going to integrate an option to edit the original (unfiltered) image as well, but
+     since the API doesn't seem to function, it seemed unnecessary. -->
 <!-- Load widget code -->
 <script type="text/javascript" src="http://feather.aviary.com/imaging/v3/editor.js"></script>
 

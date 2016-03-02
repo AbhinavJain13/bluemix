@@ -10,7 +10,7 @@ if ((isset($_POST['search'])) && ($_POST['search'] != null)) {
     echo '<img src="https://source.unsplash.com/random/800x600/" />';
 }
 ?>
-<br> <font color=\"red\">The images above are randomly changed everytime you refresh the browser. This is provided
+<br> <font color="red">The images above are randomly changed everytime you refresh the browser. This is provided
     through the use of the  <i>unsplash</i> API. However, using the search bar above, you may search any term and you will 
     obtain relatively close image results.</font></center>
 
